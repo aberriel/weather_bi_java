@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Country {
+    id : BigInteger
+    name : String
+    createdAt : LocalDateTime
+    updatedAt : LocalDateTime
+}
+
+class FederalState {
+    id : BigInteger
+    name : String
+    country : Country
+    createdAt : LocalDateTime
+    updatedAt : LocalDateTime
+}
+
+class City {
+    id : BigInteger
+    name : String
+    state : FederalState
+    latitude : Decimal
+    lontigute : Decimal
+    averageAltitude : Decimal
+    createdAt : LocalDateTime
+    updatedAt : LocalDateTime
+}
+
+class Neighborhood {
+    id : BigInteger
+    name : String
+    city : City
+    latitude : Decimal
+    longitude : Decimal
+    altitude : Decimal
+    createdAt : LocalDateTime
+    updatedAt : LocalDateTime
+}
+
+class MeasurementLocation {
+    id : BigInteger
+    address : String
+    neighborhood : Neighborhood
+    city : City
+    latitude : Decimal
+    longitude : Decimal
+    createdAt : LocalDateTime
+    updatedAt : LocalDateTime
+}
+
+Country "1" *-- "0..*" FederalState : contains >
+FederalState "1" *-- "0..*" City : contains >
+
+@enduml
