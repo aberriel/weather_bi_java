@@ -49,6 +49,58 @@ class MeasurementLocation {
     updatedAt : LocalDateTime
 }
 
+class WeatherSource {
+    id : BigInteger
+    name : String
+    apiBase : String
+    active : boolean
+    createdAt : LocalDateTime
+    updatedAt : LocalDateTime
+}
+
+enum CollectionFrequency {
+    MINUTE
+    10_MINUTE
+    HOUR
+    HALF_DAY
+    DAILY
+}
+
+class RealTimeData {
+    id : BigInteger
+    location : MeasurementLocation
+    city : City
+    latitude : Decimal
+    longitude : Decimal
+    collectedAt : LocalDateTime
+    frequency : CollectionFrequency
+    source : WeatherSource
+}
+
+class 10MinData {
+    id : BigInteger
+    location : MeasurementLocation
+    city : City
+    collectedAt : LocalDateTime
+    fromResume : boolean
+}
+
+class HourlyData {
+    id : BigInteger
+    location : MeasurementLocation
+    city : City
+    collectedAt : LocalDateTime
+    fromResume : boolean
+}
+
+class DailyWeatherData {
+    id : BigInteger
+    location : MeasurementLocation
+    city : City
+    collectionDate : LocalDate
+    fromResume : boolean
+}
+
 Country "1" *-- "0..*" FederalState : contains >
 FederalState "1" *-- "0..*" City : contains >
 
